@@ -96,6 +96,10 @@ export type Issue = {
    * Whether the pipe was skipped.
    */
   skipPipe?: boolean;
+  /**
+   * Full input
+   */
+  _full_input?: unknown
 };
 
 /**

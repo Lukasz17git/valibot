@@ -53,7 +53,7 @@ export type BaseValidation<TInput = any> = {
    *
    * @internal
    */
-  _parse(input: TInput): PipeResult<TInput>;
+  _parse(input: TInput, fullInputBeingTested?: unknown): PipeResult<TInput>;
 };
 
 /**
@@ -77,7 +77,7 @@ export type BaseValidationAsync<TInput = any> = {
    *
    * @internal
    */
-  _parse(input: TInput): Promise<PipeResult<TInput>>;
+  _parse(input: TInput, fullInputBeingTested?: unknown): Promise<PipeResult<TInput>>;
 };
 
 /**

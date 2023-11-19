@@ -4,7 +4,7 @@ import type { Issue, Issues } from './issues.ts';
  * Parse info type.
  */
 export type ParseInfo = Partial<
-  Pick<Issue, 'origin' | 'abortEarly' | 'abortPipeEarly' | 'skipPipe'>
+  Pick<Issue, 'origin' | 'abortEarly' | 'abortPipeEarly' | 'skipPipe' | '_full_input'>
 >;
 
 /**

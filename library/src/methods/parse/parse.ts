@@ -15,7 +15,7 @@ export function parse<TSchema extends BaseSchema>(
   input: unknown,
   info?: Pick<ParseInfo, 'abortEarly' | 'abortPipeEarly' | 'skipPipe'>
 ): Output<TSchema> {
-  const result = schema._parse(input, info);
+  const result = schema._parse(input, {...info, _full_input: input});
   if (result.issues) {
     throw new ValiError(result.issues);
   }

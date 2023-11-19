@@ -12,7 +12,7 @@ export type CustomValidation<TInput> = BaseValidation<TInput> & {
   /**
    * The validation function.
    */
-  requirement: (input: TInput) => boolean;
+  requirement: (input: TInput, fullInputBeingTested?: any) => boolean;
 };
 
 /**
@@ -24,7 +24,7 @@ export type CustomValidation<TInput> = BaseValidation<TInput> & {
  * @returns A validation function.
  */
 export function custom<TInput>(
-  requirement: (input: TInput) => boolean,
+  requirement: (input: TInput, fullInputBeingTested: any) => boolean,
   message: ErrorMessage = 'Invalid input'
 ): CustomValidation<TInput> {
   return {
@@ -32,8 +32,8 @@ export function custom<TInput>(
     async: false,
     message,
     requirement,
-    _parse(input) {
-      return !this.requirement(input)
+    _parse(input, fullInputBeingTested) {
+      return !this.requirement(input, fullInputBeingTested)
         ? getPipeIssues(this.type, this.message, input, this.requirement)
         : getOutput(input);
     },

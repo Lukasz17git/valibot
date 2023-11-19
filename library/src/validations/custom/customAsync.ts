@@ -12,7 +12,7 @@ export type CustomValidationAsync<TInput> = BaseValidationAsync<TInput> & {
   /**
    * The validation function.
    */
-  requirement: (input: TInput) => Promise<boolean>;
+  requirement: (input: TInput, fullInputBeingTested?: unknown) => Promise<boolean>;
 };
 
 /**
@@ -32,8 +32,8 @@ export function customAsync<TInput>(
     async: true,
     message,
     requirement,
-    async _parse(input) {
-      return !(await this.requirement(input))
+    async _parse(input, fullInputBeingTested) {
+      return !(await this.requirement(input, fullInputBeingTested))
         ? getPipeIssues(this.type, this.message, input, this.requirement)
         : getOutput(input);
     },
